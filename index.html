@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+   
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+
+    <!-- Google Webfonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600|PT+Serif:400,400italic' rel='stylesheet' type='text/css'>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css" id="theme-styles">
+
+    <!--[if lt IE 9]>      
+        <script src="js/respond.js"></script>
+    <![endif]-->
+    <script src="js/vue.js"></script>
+    <script src="js/vue-resource.js"></script>
+</head>
+<body>
+    <header>
+        <div class="widewrapper masthead">
+            <div class="container">
+                <a href="index.html" id="logo">
+                    <img src="img/logo.png" alt="clean Blog">
+                </a>
+        
+                <div id="mobile-nav-toggle" class="pull-right">
+                    <a href="#" data-toggle="collapse" data-target=".clean-nav .navbar-collapse">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </div>
+
+                <nav class="pull-right clean-nav">
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav nav-pills navbar-nav">
+                          
+                            <li>
+                                <a href="index.html">主页</a>
+                            </li>
+                            <li>
+                                <a href="about.html">关于</a>
+                            </li>
+                            <li>
+                                <a href="contact.html">联系我</a>
+                            </li>
+                            <li>
+                                <a href="create.html">写博文</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>        
+
+            </div>
+        </div>
+
+        <div class="widewrapper subheader">
+            <div class="container">
+                <div class="clean-breadcrumb">
+                    <a href="#">Blog</a>
+                </div>
+
+                <div class="clean-searchbox">
+                    <form action="#" method="get" accept-charset="utf-8">
+                        <input class="searchfield" id="searchbox" type="text" placeholder="Search">
+                        <button class="searchbutton" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="widewrapper main" id="home">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-main">
+
+                    <div class="row" v-for="(article,index) in articles" v-if="index%2==0">
+
+                        <div class="col-md-6 col-sm-6">
+
+                            <article class=" blog-teaser">
+                                <header>
+                                    <img :src="articles[index].img" v-if="articles[index].img" alt="">
+                                    <p v-else>{{articles[index].describe}}</p>
+                                    <h3><a :href="childUrl + '?id=' + articles[index].id">{{articles[index].title}}</a></h3>
+                                    <span class="meta">{{articles[index].date}}, {{articles[index].author}}</span>
+                                    <hr>
+                                </header>
+                            </article>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6" v-if="index<articles.length-1">
+                            <article class=" blog-teaser">
+                                <header>
+                                    <img :src="articles[index+1].img" v-if="articles[index+1].img" alt="">
+                                    <p v-else>{{articles[index+1].describe}}</p>
+                                    <h3><a :href="childUrl + '?id=' + articles[index+1].id">{{articles[index+1].title}}</a></h3>
+                                    <span class="meta">{{articles[index+1].date}}, {{articles[index+1].author}}</span>
+                                    <hr>
+                                </header>
+                            </article>
+                        </div>
+
+                    </div>
+
+                    <div class="paging">
+                        <a href="#" class="older">查看更多</i></a>
+                    </div>
+                </div>
+                <aside class="col-md-4 blog-aside">
+                    
+                    <div class="aside-widget">
+                        <header>
+                            <h3>推荐文章</h3>
+                        </header>
+                        <div class="body">
+                            <ul class="clean-list" >
+                                <li><a href="">深度了解ES5和ES6</a></li>
+                                <li><a href="">VUE和Angular比较</a></li>
+                                <li><a href="">DOM2和DOM3</a></li>
+                                <li><a href="">前端面试笔记</a></li>
+                                <li><a href="">CSS分类总结</a></li>
+                                <li><a href="">程序员如何搭讪</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                
+                    <div class="aside-widget">
+                        <header>
+                            <h3>相关文章</h3>
+                        </header>
+                        <div class="body">
+                            <ul class="clean-list">
+                                <li><a href="">Blackor Responsive Theme</a></li>
+                                <li><a href="">Portfolio Bootstrap Template</a></li>
+                                <li><a href="">Clean Slider Template</a></li>
+                                <li><a href="">Clean - Responsive HTML5 Template</a></li>
+                                <li><a href="">Responsive Pricing Table</a></li>
+                                <li><a href="">Yellow HTML5 Template</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="aside-widget">
+                        <header>
+                            <h3>标签</h3>
+                        </header>
+                        <div class="body clearfix">
+                            <ul class="tags" v-for="tag in tags">
+                                <li><a href="#">{{tag}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="widewrapper footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 footer-widget">
+                        <h3> <i class="fa fa-user"></i>关于</h3>
+
+                        <p>今天看了腾讯Web团队(AlloyTeam)的项目，甚是崇拜，尤其是dntzhang，代码精简优秀。我也是一个程序员，为什么不能达到那个高度。专注，加油。</p>
+                        <p>向AlloyTeam、尤雨溪、taobao团队学习.</p>
+                    </div>
+
+                    <div class="col-md-4 footer-widget">
+                        <h3> <i class="fa fa-pencil"></i> 最新文章</h3>
+                        <ul class="clean-list">
+                            <li><a href="">深度了解ES5和ES6</a></li>
+                            <li><a href="">前端面试笔记</a></li>
+                            <li><a href="">VUE和Angular比较</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-4 footer-widget">
+                        <h3> <i class="fa fa-envelope"></i>联系我</h3>
+
+                        <p>微信：alive0511.</p>
+                        <p>邮箱：liwei511@live.cn.</p>
+                        <div class="footer-widget-icon">
+                            <i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-google"></i>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="widewrapper copyright">
+                Copyright &copy; 2017.Company name All rights reserved.
+        </div>
+    </footer>
+    
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/modernizr.js"></script>
+    <script src="js/liblog.js"></script>
+</body>
+</html>

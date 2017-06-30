@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Contact Me</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+
+    <!-- Google Webfonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600|PT+Serif:400,400italic' rel='stylesheet' type='text/css'>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css" id="theme-styles">
+
+    <!--[if lt IE 9]>
+    <script src="js/vendor/google/html5-3.6-respond-1.1.0.min.js"></script>
+    <![endif]-->
+    <script src="js/vue.js"></script>
+    <script src="js/vue-resource.js"></script>
+    <script src="js/marked.min.js"></script>
+    <style>
+        #editor {
+            margin:0;
+            height:100%;
+            font-family:'Helvetica Neue', Arial,sans-serif;
+            color:#333;
+        }
+        textarea, #editor div{
+            display: inline-block;
+            width: 49%;
+            height:100%;
+            vertical-align: top;
+            box-sizing: border-box;
+            padding: 0 20px;
+        }
+        textarea{
+            border: none;
+            border-right: 1px solid #ccc;
+            resize: none;
+            outline: none;
+            background-color: #f6f6f6;
+            font-size:14px;
+            font-family:'Monaco',courier,monospace;
+            padding:20px;
+        }
+        code{
+            color:#f66;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="widewrapper masthead">
+        <div class="container">
+            <a href="index.html" id="logo">
+                <img src="img/logo.png" alt="clean Blog">
+            </a>
+
+            <div id="mobile-nav-toggle" class="pull-right">
+                <a href="#" data-toggle="collapse" data-target=".clean-nav .navbar-collapse">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+
+            <nav class="pull-right clean-nav">
+                <div class="collapse navbar-collapse">
+                    <ul class="nav nav-pills navbar-nav">
+
+                        <li>
+                            <a href="index.html">主页</a>
+                        </li>
+                        <li>
+                            <a href="about.html">关于</a>
+                        </li>
+                        <li>
+                            <a href="contact.html">联系我</a>
+                        </li>
+                        <li>
+                            <a href="create.html">写博文</a>
+                            <!--<a href="create.html">+</a>-->
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+        </div>
+    </div>
+
+    <!--<div class="widewrapper subheader">-->
+        <!--<div class="container">-->
+            <!--<div class="clean-breadcrumb">-->
+                <!--<a href="#">编辑文章</a>-->
+            <!--</div>-->
+            <!--<div class="clean-searchbox">-->
+                <!--<form action="#" method="get" accept-charset="utf-8">-->
+
+                    <!--<input class="searchfield" id="searchbox" type="text" placeholder="Search">-->
+                    <!--<button class="searchbutton" type="submit">-->
+                        <!--<i class="fa fa-search"></i>-->
+                    <!--</button>-->
+                <!--</form>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+</header>
+
+<div class="widewrapper main">
+    <div class="container">
+        <!--<div class="row">-->
+            <!--<div class="col-md-12  clean-superblock" id="contact">-->
+                <form action="#" method="get" accept-charset="utf-8" class="contact-form">
+                    <input type="text" name="title" id="contact-title" placeholder="标题" class="form-control input-lg">
+                    <input type="tags" name="tags" id="contact-email" placeholder="标签,使用逗号分隔" class="form-control input-lg">
+                    <div id="editor">
+                        <textarea rows="14" :value="input" @input="update"></textarea>
+                        <div v-html="compiledMarkdown"></div>
+                    </div>
+                    <div class="buttons clearfix">
+                        <button type="submit" class="btn btn-xlarge btn-clean-one">Submit</button>
+                    </div>
+                </form>
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+</div>
+
+<footer>
+    <div class="widewrapper footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 footer-widget">
+                    <h3> <i class="fa fa-user"></i>关于</h3>
+
+                    <p>今天看了腾讯Web团队(AlloyTeam)的项目，甚是崇拜，尤其是dntzhang，代码精简优秀。我也是一个程序员，为什么不能达到那个高度。专注，加油。</p>
+                    <p>向AlloyTeam、尤雨溪、taobao团队学习.</p>
+                </div>
+
+                <div class="col-md-4 footer-widget">
+                    <h3> <i class="fa fa-pencil"></i> 最新文章</h3>
+                    <ul class="clean-list">
+                        <li><a href="">深度了解ES5和ES6</a></li>
+                        <li><a href="">前端面试笔记</a></li>
+                        <li><a href="">VUE和Angular比较</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4 footer-widget">
+                    <h3> <i class="fa fa-envelope"></i>联系我</h3>
+
+                    <p>微信：alive0511.</p>
+                    <p>邮箱：liwei511@live.cn.</p>
+                    <div class="footer-widget-icon">
+                        <i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-google"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="widewrapper copyright">
+        Copyright &copy; 2017.Company name All rights reserved.
+    </div>
+</footer>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/modernizr.js"></script>
+<script src="js/create.js"></script>
+</body>
+</html>
