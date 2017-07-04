@@ -10,6 +10,7 @@ body {
   background: url(../img/bgc.jpg) no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  zoom:90%
 }
 
 a {
